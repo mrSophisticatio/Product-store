@@ -151,9 +151,6 @@ definitions:
       cost:
         type: "number"
         format: "float"
-      count:
-        type: "integer"
-        format: "int32"
   Product:
     type: "object"
     properties:
@@ -165,9 +162,6 @@ definitions:
       cost:
         type: "number"
         format: "float"
-      count:
-        type: "integer"
-        format: "int32"
   ActionResult:
     type: "object"
     properties:
