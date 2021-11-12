@@ -15,7 +15,15 @@
 		<p><b>Добавление продукта</b></p>
 		<table>
 			<tr><td><label>Название: </label></td><td><input type="text" id="addName" /></td></tr>
-			<tr><td><label>Цена: </label></td><td><input type="number" id="addPrice" /></td></tr>
+			<tr><td><label>Цена: </label></td><td><input 
+														 id="addPrice"
+														 type="number" 
+														 min="1" step="1" 
+														 onfocus="this.previousValue = this.value" 
+														 onkeydown="this.previousValue = this.value" 
+														 oninput="validity.valid || (value = this.previousValue)"
+												    >
+				                         </td></tr>
 		</table>
 		<button id="addProduct">Сохранить</button>
 	</div>
