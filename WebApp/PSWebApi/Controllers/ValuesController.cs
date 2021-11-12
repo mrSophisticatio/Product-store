@@ -13,9 +13,9 @@ namespace WebApp.Controllers
 				var allProducts = WebApiConfig.ProductStore.FilterProductStore("");
 				return Json(allProducts);
 			}
-			catch
+			catch (Exception ex)
 			{
-				return Json(new ActionResult{ Code = 500, Message = "Stacktrace error" });
+				return Json(new ActionResult{ Code = 500, Message = ex.StackTrace });
 			}
 		}
 
@@ -30,10 +30,10 @@ namespace WebApp.Controllers
 				}
 				return Json(product);
 			}
-			catch
+			catch (Exception ex)
 			{
-				return Json(new ActionResult { Code = 500, Message = "Stacktrace error" });
-			}			
+				return Json(new ActionResult { Code = 500, Message = ex.StackTrace });
+			}
 		}
 
 		[HttpPost]//применяем атрибуты, чтобы система знала, с каким методом надо сопоставлять запрос, согласно условностям при наименовании методов
@@ -50,13 +50,9 @@ namespace WebApp.Controllers
 				var allProducts = WebApiConfig.ProductStore.FilterProductStore("");
 				return Ok(allProducts);
 			}
-			//catch (Exception ex)
-			//{
-			//	return Json(new { Code = 500, Message = ex.StackTrace });
-			//}
-			catch
+			catch (Exception ex)
 			{
-				return Json(new ActionResult{ Code = 500, Message = "Stacktrace error" });
+				return Json(new ActionResult{ Code = 500, Message = ex.StackTrace });
 			}
 		}
 
@@ -67,9 +63,9 @@ namespace WebApp.Controllers
 				WebApiConfig.ProductStore.DeleteProduct(id);
 				return Json(new ActionResult { Code = 200, Message = "Success" });
 			}
-			catch
+			catch (Exception ex)
 			{
-				return Json(new ActionResult { Code = 500, Message = "Stacktrace error" });
+				return Json(new ActionResult { Code = 500, Message = ex.StackTrace });
 			}
 		}
 
@@ -82,9 +78,13 @@ namespace WebApp.Controllers
 				//var result = (selectedProduct, Json(new ActionResult { Code = 200, Message = "Success" }));
 				return Ok(selectedProduct);
 			}
-			catch
+			//catch
+			//{
+			//	return InternalServerError();
+			//}
+			catch (Exception ex)
 			{
-				return InternalServerError();
+				return Json(new ActionResult { Code = 500, Message = ex.StackTrace });
 			}
 		}
 	}
