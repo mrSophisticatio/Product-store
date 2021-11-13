@@ -4,6 +4,7 @@ using System.Linq;
 using WebApp.Models;
 using MoreLinq;          //Этот фреймворк позволяет абстрагироваться от структуры конкретной базы данных и вести все операции с данными через модель.
 using Excel = Microsoft.Office.Interop.Excel;
+using PSWebApi.Models;
 
 namespace WebApp.Utils
 {
@@ -31,19 +32,19 @@ namespace WebApp.Utils
 
 		public void Init()
 		{
-			ValueLib.headerNameColumnName.Add(ValueLib.Heading.Id, ValueLib.mas[0]);
-			ValueLib.headerNameColumnName.Add(ValueLib.Heading.Name, ValueLib.mas[1]);
-			ValueLib.headerNameColumnName.Add(ValueLib.Heading.Price, ValueLib.mas[2]);
-			rowCount = ExcelSheet.Cells[ExcelSheet.Rows.Count, ValueLib.headerNameColumnName[ValueLib.Heading.Id]].End[Excel.XlDirection.xlUp].Row;
+			Constants.HEADERNAME_COLUMNNAME.Add(Constants.Heading.Id, Constants.EXCEL_COLUMNS[0]);
+			Constants.HEADERNAME_COLUMNNAME.Add(Constants.Heading.Name, Constants.EXCEL_COLUMNS[1]);
+			Constants.HEADERNAME_COLUMNNAME.Add(Constants.Heading.Price, Constants.EXCEL_COLUMNS[2]);
+			rowCount = ExcelSheet.Cells[ExcelSheet.Rows.Count, Constants.HEADERNAME_COLUMNNAME[Constants.Heading.Id]].End[Excel.XlDirection.xlUp].Row;
 
 			for (int i = 0; i < rowCount - 1; i++)
 			{
-				ValueLib.productList.Add(
+				Constants.PRODUCT_LIST.Add(
 											new Product
 											{
-												Id = Convert.ToInt32(ExcelSheet.Cells[i + 2, ValueLib.Heading.Id + 1].Value),
-												Name = ExcelSheet.Cells[i + 2, ValueLib.Heading.Name + 1].Value,
-												Price = Convert.ToInt32(ExcelSheet.Cells[i + 2, ValueLib.Heading.Price + 1].Value)
+												Id = Convert.ToInt32(ExcelSheet.Cells[i + 2, Constants.Heading.Id + 1].Value),
+												Name = ExcelSheet.Cells[i + 2, Constants.Heading.Name + 1].Value,
+												Price = Convert.ToInt32(ExcelSheet.Cells[i + 2, Constants.Heading.Price + 1].Value)
 											}
 										);
 			}
@@ -54,45 +55,45 @@ namespace WebApp.Utils
 		{
 			product.Id = ++index;
 			rowCount++;
-			ExcelSheet.Cells[rowCount, ValueLib.headerNameColumnName[ValueLib.Heading.Id]].Value = product.Id.ToString();
-			ExcelSheet.Cells[rowCount, ValueLib.headerNameColumnName[ValueLib.Heading.Name]].Value = product.Name.ToString();
-			ExcelSheet.Cells[rowCount, ValueLib.headerNameColumnName[ValueLib.Heading.Price]].Value = product.Price.ToString();
-			ValueLib.productList.Add(new Product { Id = Convert.ToInt32(ExcelSheet.Cells[rowCount, 1].Value), Name = ExcelSheet.Cells[rowCount, 2].Value, Price = Convert.ToInt32(ExcelSheet.Cells[rowCount, 3].Value) });
+			ExcelSheet.Cells[rowCount, Constants.HEADERNAME_COLUMNNAME[Constants.Heading.Id]].Value = product.Id.ToString();
+			ExcelSheet.Cells[rowCount, Constants.HEADERNAME_COLUMNNAME[Constants.Heading.Name]].Value = product.Name.ToString();
+			ExcelSheet.Cells[rowCount, Constants.HEADERNAME_COLUMNNAME[Constants.Heading.Price]].Value = product.Price.ToString();
+			Constants.PRODUCT_LIST.Add(new Product { Id = Convert.ToInt32(ExcelSheet.Cells[rowCount, 1].Value), Name = ExcelSheet.Cells[rowCount, 2].Value, Price = Convert.ToInt32(ExcelSheet.Cells[rowCount, 3].Value) });
 		}
 
 		public void DeleteProduct(int id)
 		{
 			int numberString = FindProductIndex(id);
-			Excel.Range TempRange = ExcelSheet.get_Range(ValueLib.headerNameColumnName[ValueLib.Heading.Id] + numberString, ValueLib.headerNameColumnName[ValueLib.Heading.Price] + numberString);
+			Excel.Range TempRange = ExcelSheet.get_Range(Constants.HEADERNAME_COLUMNNAME[Constants.Heading.Id] + numberString, Constants.HEADERNAME_COLUMNNAME[Constants.Heading.Price] + numberString);
 			TempRange.EntireRow.Delete(Type.Missing);
 			rowCount--;
-			ValueLib.productList.RemoveAt(numberString - 2);
+			Constants.PRODUCT_LIST.RemoveAt(numberString - 2);
 		}
 
 		int FindMaxId()
 		{
 			int maxID = 0;
-			Product product = ValueLib.productList.MaxBy(p => p.Id).First();
+			Product product = Constants.PRODUCT_LIST.MaxBy(p => p.Id).First();
 			maxID = product.Id;
 			return maxID;
 		}
 
 		int FindProductIndex(int id)
 		{
-			int numberString = ValueLib.productList.FindIndex(p => p.Id == id) + 2;
+			int numberString = Constants.PRODUCT_LIST.FindIndex(p => p.Id == id) + 2;
 			return numberString;
 		}
 
 		public List<Product> FilterProductStore(string subString)
 		{
-			var selectedProduct = ValueLib.productList.Where(p => p.Name.Contains(subString)).ToList();
+			var selectedProduct = Constants.PRODUCT_LIST.Where(p => p.Name.Contains(subString)).ToList();
 
 			return selectedProduct;
 		}
 
 		public bool ContainsProduct(string subString)
 		{
-			return ValueLib.productList.Exists(p => p.Name == subString);
+			return Constants.PRODUCT_LIST.Exists(p => p.Name == subString);
 		}
 	}
 }

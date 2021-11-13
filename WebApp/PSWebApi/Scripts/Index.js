@@ -9,7 +9,7 @@
     $("#filterProduct").click(function (event) {
         event.preventDefault();
 		FilterProductStore($('#subString').val());
-    });   
+    });
 });
 var substr = $('#subString');
 // Получение всех продуктов по ajax-запросу
@@ -18,7 +18,7 @@ function GetAllProducts() {
     $("#createBlock").css('display', 'block');
 
     $.ajax({
-        url: '/api/values',
+        url: '/api/product',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
@@ -38,7 +38,7 @@ function AddProduct() {
     };
 
     $.ajax({
-        url: '/api/values/',
+        url: '/api/product/',
         type: 'POST',
         data: JSON.stringify(product),
         contentType: "application/json;charset=utf-8",
@@ -57,7 +57,7 @@ function AddProduct() {
 function DeleteProduct(id) {
 
     $.ajax({
-        url: '/api/values/' + id,
+        url: '/api/product/' + id,
         type: 'DELETE',
         contentType: "application/json;charset=utf-8", //тип данных, которые мы отправляем
         success: function (data) {
@@ -92,7 +92,7 @@ function DeleteItem(el) {
 function FilterProductStore(subString) {
 
     $.ajax({
-		url: '/api/values/?subString=' + subString,
+		url: '/api/product/?subString=' + subString,
         type: 'GET',
         dataType: 'json',
         success: function (data) {
