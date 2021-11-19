@@ -19,7 +19,6 @@ namespace WebApp.Utils
 		{
 			new ProductStore(filename, 1);
 		}
-
 		public ProductStore(string filename, int worksheetNumber)
 		{
 			Excel.Application ExcelApp2 = new Excel.Application();
@@ -50,7 +49,13 @@ namespace WebApp.Utils
 			}
 			index = FindMaxId();
 		}
-
+		int FindMaxId()
+		{
+			int maxID = 0;
+			Product product = Constants.PRODUCT_LIST.MaxBy(p => p.Id).First();
+			maxID = product.Id;
+			return maxID;
+		}
 		public void AddProduct(Product product)//параметр продукт
 		{
 			product.Id = ++index;
@@ -60,7 +65,6 @@ namespace WebApp.Utils
 			ExcelSheet.Cells[rowCount, Constants.HEADERNAME_COLUMNNAME[Constants.Heading.Price]].Value = product.Price.ToString();
 			Constants.PRODUCT_LIST.Add(new Product { Id = Convert.ToInt32(ExcelSheet.Cells[rowCount, 1].Value), Name = ExcelSheet.Cells[rowCount, 2].Value, Price = Convert.ToInt32(ExcelSheet.Cells[rowCount, 3].Value) });
 		}
-
 		public void DeleteProduct(int id)
 		{
 			int numberString = FindProductIndex(id);
@@ -69,31 +73,9 @@ namespace WebApp.Utils
 			rowCount--;
 			Constants.PRODUCT_LIST.RemoveAt(numberString - 2);
 		}
-
-		int FindMaxId()
-		{
-			int maxID = 0;
-			Product product = Constants.PRODUCT_LIST.MaxBy(p => p.Id).First();
-			maxID = product.Id;
-			return maxID;
-		}
-
-		int FindProductIndex(int id)
-		{
-			int numberString = Constants.PRODUCT_LIST.FindIndex(p => p.Id == id) + 2;
-			return numberString;
-		}
-
-		public List<Product> FilterProductStore(string subString)
-		{
-			var selectedProduct = Constants.PRODUCT_LIST.Where(p => p.Name.Contains(subString)).ToList();
-
-			return selectedProduct;
-		}
-
-		public bool ContainsProduct(string subString)
-		{
-			return Constants.PRODUCT_LIST.Exists(p => p.Name == subString);
-		}
+		int FindProductIndex(int id) => Constants.PRODUCT_LIST.FindIndex(p => p.Id == id) + 2;
+		public List<Product> FilterProductStore(string subString) => Constants.PRODUCT_LIST.Where(p => p.Name.Contains(subString)).ToList();
+		public bool ContainsProduct(string subString) => Constants.PRODUCT_LIST.Exists(p => p.Name == subString);
+		public Product GetProductById(int id) => Constants.PRODUCT_LIST.Find(p => p.Id == id);
 	}
 }

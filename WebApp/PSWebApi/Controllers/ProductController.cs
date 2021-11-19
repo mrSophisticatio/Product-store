@@ -16,7 +16,7 @@ namespace WebApp.Controllers
 			}
 			catch (Exception ex)
 			{
-				return Json(new ActionResult{ Code = 500, Message = ex.StackTrace });
+				return Json(new ActionResult{ code = 500, message = ex.StackTrace });
 			}
 		}
 
@@ -24,35 +24,38 @@ namespace WebApp.Controllers
 		{
 			try
 			{
-				Product product = Constants.PRODUCT_LIST.Find(p => p.Id == id);
+				Product product = WebApiConfig.ProductStore.GetProductById(id);
 				if (product == null)
-				{
-					return Json(new ActionResult { Code = 404, Message = "Not found!" });
-				}
+					return Json(new ActionResult { code = 404, message = "Not found!" });
+				
 				return Json(product);
 			}
 			catch (Exception ex)
 			{
-				return Json(new ActionResult { Code = 500, Message = ex.StackTrace });
+				return Json(new ActionResult { code = 500, message = ex.StackTrace });
 			}
 		}
 
 		[HttpPost]//применяем атрибуты, чтобы система знала, с каким методом надо сопоставлять запрос, согласно условностям при наименовании методов
 		public IHttpActionResult AddProduct([FromBody]Product product)
 		{
-			bool resultCheckContainsProduct = false;
 			try
 			{
-				resultCheckContainsProduct = WebApiConfig.ProductStore.ContainsProduct(product.Name);
-				if (resultCheckContainsProduct)
-					return Json(new ActionResult{ Code = 400, Message = "Продукт с таким наименованием уже имеется в системе!" });
+				bool resultCheck = product.Name == "" || product.Price <= 0;
+
+				if (resultCheck)
+					return Json(new ActionResult { code = 400, message = "Невалидные параметры наименования/стоимости!" });
+
+				resultCheck = product.Name == "" || product.Price <= 0 || WebApiConfig.ProductStore.ContainsProduct(product.Name);
+				if (resultCheck)
+					return Json(new ActionResult{ code = 400, message = "Продукт с таким наименованием уже имеется в системе!" });
+
 				WebApiConfig.ProductStore.AddProduct(product);
-				var allProducts = WebApiConfig.ProductStore.FilterProductStore("");
-				return Ok(allProducts);
+				return Ok(new ActionResult { code = 200, message = "Success" });
 			}
 			catch (Exception ex)
 			{
-				return Json(new ActionResult{ Code = 500, Message = ex.StackTrace });
+				return Json(new ActionResult{ code = 500, message = ex.StackTrace });
 			}
 		}
 
@@ -61,11 +64,11 @@ namespace WebApp.Controllers
 			try
 			{
 				WebApiConfig.ProductStore.DeleteProduct(id);
-				return Json(new ActionResult { Code = 200, Message = "Success" });
+				return Ok(new ActionResult { code = 200, message = "Success" });
 			}
 			catch (Exception ex)
 			{
-				return Json(new ActionResult { Code = 500, Message = ex.StackTrace });
+				return Json(new ActionResult { code = 500, message = ex.StackTrace });
 			}
 		}
 
@@ -74,13 +77,13 @@ namespace WebApp.Controllers
 		{
 			try
 			{
+				subString = subString == null ? "" : subString;
 				var selectedProduct = WebApiConfig.ProductStore.FilterProductStore(subString);
-				//var result = (selectedProduct, Json(new ActionResult { Code = 200, Message = "Success" }));
 				return Ok(selectedProduct);
 			}
 			catch (Exception ex)
 			{
-				return Json(new ActionResult { Code = 500, Message = ex.StackTrace });
+				return Json(new ActionResult { code = 500, message = ex.StackTrace });
 			}
 		}
 	}

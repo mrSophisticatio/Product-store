@@ -1,1 +1,70 @@
-﻿
+﻿<div class="toggler">
+    <input type="checkbox" id="toggler__checkbox-id-1" class="toggler__checkbox form-control toggler__checkbox-id">
+    <label for="toggler__checkbox-id-1" class="form-inline summary-block toggler__label">
+        <img class="form-control toggler__label arrow-right" />
+        <p class="toggler__label form-control">Добавить продукт</p>
+    </label>
+    <div class="toggler__content-box">
+        <div class="form-inline summary-block row">
+            <div class="col-md-8">
+                <div class="form-group widget">
+                    <div class="row">
+                        <label>Наименование</label>
+                    </div>
+                    <div class="row">
+                        <input type="text" id="addName" class="input-full-width" required />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group widget">
+                    <div class="row">
+                        <label>Стоимость, руб.</label>
+                    </div>
+                    <div class="row">
+                        <input id="addPrice"
+                               class="input-full-width"
+                               style="text-align: right;"
+                               type="number"
+                               min="1" step="1"
+                               onfocus="this.previousValue = this.value"
+                               onkeydown="this.previousValue = this.value"
+                               required
+                               oninput="validity.valid || (value = this.previousValue)">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="addProduct" class="btn btn-primary pull-right bootstrap-inline-button">Добавить</button>
+        <button id="clearProduct" class="btn btn-danger pull-right bootstrap-inline-button">Очистить</button>
+        <label id="add-block-error-message" style="color: #d9534f; vertical-align: middle;"></label>
+    </div>
+</div>
+<div class="toggler">
+    <input type="checkbox" id="toggler__checkbox-id-2" class="toggler__checkbox form-control toggler__checkbox-id" checked>
+    <label for="toggler__checkbox-id-2" class="form-inline summary-block toggler__label">
+        <img class="form-control toggler__label arrow-right" />
+        <p class="toggler__label form-control">Фильтр</p>
+    </label>
+    <div class="toggler__content-box">
+        <div class="form-inline summary-block row">
+            <div class="form-group widget" style="margin-left: 15px;">
+                <div class="row">
+                    <label>Наименование</label>
+                </div>
+                <div class="row">
+                        <div class="input-group" style="width: 88%;">
+                            <input type="text" id="subString" class="" style="width: 100%;"/>
+                            <span id="clearFilterProduct" class="input-group-addon glyphicon clear-filter-cross">&times;</span>
+                        </div>
+                        <button id="filterProduct" class="btn btn-primary" style="margin-left: 30px; margin-top: -3px;">Найти</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<div class="table-label-header-block">
+    <label class="table-header">Продукты</label>
+</div>
+<div id="tableFilterBlock"></div>
+<script src="../../Scripts/Index.js"></script>

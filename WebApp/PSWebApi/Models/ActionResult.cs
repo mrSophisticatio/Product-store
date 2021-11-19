@@ -2,7 +2,7 @@
 {
 	public struct ActionResult
 	{
-		public int Code;
-		public string Message;
+		public int code;
+		public string message;
 	}
 }
