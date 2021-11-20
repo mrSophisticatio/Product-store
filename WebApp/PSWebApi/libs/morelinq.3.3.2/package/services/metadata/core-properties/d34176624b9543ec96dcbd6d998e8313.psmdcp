@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coreProperties xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openxmlformats.org/package/2006/metadata/core-properties">
+  <dc:creator>MoreLINQ Developers.</dc:creator>
+  <dc:description>This project enhances LINQ to Objects with the following methods: Acquire, Aggregate (some EXPERIMENTAL), AggregateRight, Append, Assert, AssertCount, AtLeast, AtMost, Await (EXPERIMENTAL), AwaitCompletion (EXPERIMENTAL), Backsert, Batch, Cartesian, Choose, CountBetween, CompareCount, CountBy, CountDown, Consume, DistinctBy, EndsWith, EquiZip, Evaluate, Exactly, ExceptBy, Exclude, FallbackIfEmpty, FillBackward, FillForward, Flatten, Fold, ForEach, From, FullGroupJoin, FullJoin, Generate, GenerateByIndex, GroupAdjacent, Index, IndexBy, Insert, Interleave, Lag, Lead, LeftJoin, MaxBy, Memoize (EXPERIMENTAL), MinBy, Move, OrderBy, OrderedMerge, Pad, PadStart, Pairwise, PartialSort, PartialSortBy, Partition, Permutations, Pipe, Prepend, PreScan, Random, RandomDouble, RandomSubset, Rank, RankBy, Repeat, Return, RightJoin, RunLengthEncode, Scan, ScanBy, ScanRight, Segment, Sequence, Shuffle, SkipLast, SkipUntil, Slice, SortedMerge, Split, StartsWith, Subsets, TagFirstLast, TakeEvery, TakeLast, TakeUntil, ThenBy, ToArrayByIndex, ToDataTable, ToDelimitedString, ToDictionary, ToHashSet, ToLookup, Trace, Transpose, TraverseBreadthFirst, TraverseDepthFirst, TrySingle (EXPERIMENTAL), Unfold, Window, WindowLeft, WindowRight, ZipLongest, ZipShortest</dc:description>
+  <dc:identifier>morelinq</dc:identifier>
+  <version>3.3.2-ci-20191227T0957</version>
+  <keywords>linq extensions</keywords>
+  <lastModifiedBy>NuGet.Build.Tasks.Pack, Version=5.3.0.4, Culture=neutral, PublicKeyToken=31bf3856ad364e35;</lastModifiedBy>
+</coreProperties>

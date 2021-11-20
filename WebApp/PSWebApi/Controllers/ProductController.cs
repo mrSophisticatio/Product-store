@@ -16,7 +16,7 @@ namespace WebApp.Controllers
 			}
 			catch (Exception ex)
 			{
-				return Json(new ActionResult{ Code = 500, Message = ex.StackTrace });
+				return Json(new ActionResult { Code = 500, Message = ex.StackTrace });
 			}
 		}
 
@@ -24,7 +24,7 @@ namespace WebApp.Controllers
 		{
 			try
 			{
-				Product product = Constants.PRODUCT_LIST.Find(p => p.Id == id);
+				Product product = WebApiConfig.ProductStore.GetProductById(id);
 				if (product == null)
 				{
 					return Json(new ActionResult { Code = 404, Message = "Not found!" });
@@ -45,14 +45,14 @@ namespace WebApp.Controllers
 			{
 				resultCheckContainsProduct = WebApiConfig.ProductStore.ContainsProduct(product.Name);
 				if (resultCheckContainsProduct)
-					return Json(new ActionResult{ Code = 400, Message = "Продукт с таким наименованием уже имеется в системе!" });
+					return Json(new ActionResult { Code = 400, Message = "Продукт с таким наименованием уже имеется в системе!" });
 				WebApiConfig.ProductStore.AddProduct(product);
 				var allProducts = WebApiConfig.ProductStore.FilterProductStore("");
 				return Ok(allProducts);
 			}
 			catch (Exception ex)
 			{
-				return Json(new ActionResult{ Code = 500, Message = ex.StackTrace });
+				return Json(new ActionResult { Code = 500, Message = ex.StackTrace });
 			}
 		}
 
@@ -82,6 +82,6 @@ namespace WebApp.Controllers
 			{
 				return Json(new ActionResult { Code = 500, Message = ex.StackTrace });
 			}
-		}
+		}		
 	}
 }

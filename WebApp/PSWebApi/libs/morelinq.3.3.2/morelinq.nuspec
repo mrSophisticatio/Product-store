@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>morelinq</id>
+    <version>3.3.2</version>
+    <title>MoreLINQ</title>
+    <authors>MoreLINQ Developers.</authors>
+    <owners>MoreLINQ Developers.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="file">COPYING.txt</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <projectUrl>https://morelinq.github.io/</projectUrl>
+    <description>This project enhances LINQ to Objects with the following methods: Acquire, Aggregate (some EXPERIMENTAL), AggregateRight, Append, Assert, AssertCount, AtLeast, AtMost, Await (EXPERIMENTAL), AwaitCompletion (EXPERIMENTAL), Backsert, Batch, Cartesian, Choose, CountBetween, CompareCount, CountBy, CountDown, Consume, DistinctBy, EndsWith, EquiZip, Evaluate, Exactly, ExceptBy, Exclude, FallbackIfEmpty, FillBackward, FillForward, Flatten, Fold, ForEach, From, FullGroupJoin, FullJoin, Generate, GenerateByIndex, GroupAdjacent, Index, IndexBy, Insert, Interleave, Lag, Lead, LeftJoin, MaxBy, Memoize (EXPERIMENTAL), MinBy, Move, OrderBy, OrderedMerge, Pad, PadStart, Pairwise, PartialSort, PartialSortBy, Partition, Permutations, Pipe, Prepend, PreScan, Random, RandomDouble, RandomSubset, Rank, RankBy, Repeat, Return, RightJoin, RunLengthEncode, Scan, ScanBy, ScanRight, Segment, Sequence, Shuffle, SkipLast, SkipUntil, Slice, SortedMerge, Split, StartsWith, Subsets, TagFirstLast, TakeEvery, TakeLast, TakeUntil, ThenBy, ToArrayByIndex, ToDataTable, ToDelimitedString, ToDictionary, ToHashSet, ToLookup, Trace, Transpose, TraverseBreadthFirst, TraverseDepthFirst, TrySingle (EXPERIMENTAL), Unfold, Window, WindowLeft, WindowRight, ZipLongest, ZipShortest</description>
+    <releaseNotes>https://github.com/morelinq/MoreLINQ/releases/tag/v3.3.2</releaseNotes>
+    <copyright>© 2008 Jonathan Skeet. Portions © 2009 Atif Aziz, Chris Ammerman, Konrad Rudolph. Portions © 2010 Johannes Rudolph, Leopold Bushkin. Portions © 2015 Felipe Sateler, “sholland”. Portions © 2016 Andreas Gullberg Larsen, Leandro F. Vieira (leandromoh). Portions © 2017 Jonas Nyrup (jnyrup). Portions © Microsoft. All rights reserved.</copyright>
+    <tags>linq extensions</tags>
+    <repository type="git" url="https://github.com/morelinq/MoreLINQ.git" commit="b8021734c1b78ae861e6df13f9d7de6db26d87f9" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.5.1">
+        <dependency id="System.ValueTuple" version="4.5.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard1.0">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+        <dependency id="System.ValueTuple" version="4.5.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Data.DataSetExtensions" targetFramework=".NETFramework4.5.1" />
+      <frameworkAssembly assemblyName="System.Data" targetFramework=".NETFramework4.5.1" />
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.5.1" />
+      <frameworkAssembly assemblyName="System.Xml" targetFramework=".NETFramework4.5.1" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

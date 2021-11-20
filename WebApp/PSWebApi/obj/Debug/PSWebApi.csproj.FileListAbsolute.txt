@@ -448,3 +448,5 @@ D:\VS Projects\Product-store\WebApp\PSWebApi\bin\x86\e_sqlite3.dll
 D:\VS Projects\Product-store\WebApp\PSWebApi\bin\x64\e_sqlite3.dll
 D:\VS Projects\Product-store\WebApp\PSWebApi\bin\SQLitePCLRaw.batteries_green.dll
 D:\VS Projects\Product-store\WebApp\PSWebApi\bin\SQLitePCLRaw.batteries_v2.dll
+D:\VS Projects\Product-store\WebApp\PSWebApi\bin\MoreLinq.pdb
+D:\VS Projects\Product-store\WebApp\PSWebApi\bin\MoreLinq.xml

@@ -5,22 +5,23 @@ using WebApp.Models;
 using MoreLinq;          //Этот фреймворк позволяет абстрагироваться от структуры конкретной базы данных и вести все операции с данными через модель.
 using Excel = Microsoft.Office.Interop.Excel;
 using PSWebApi.Models;
+using PSWebApi.Interface;
 
 namespace WebApp.Utils
 {
-	public class ProductStore
+	public class ProductStoreExcel: IProductStore
 	{
 		/*поля и св-ва*/
 		Excel.Worksheet ExcelSheet;
 		int index;
 		public int rowCount;
 
-		public ProductStore(string filename)
+		public ProductStoreExcel(string filename)
 		{
-			new ProductStore(filename, 1);
+			new ProductStoreExcel(filename, 1);
 		}
 
-		public ProductStore(string filename, int worksheetNumber)
+		public ProductStoreExcel(string filename, int worksheetNumber)
 		{
 			Excel.Application ExcelApp2 = new Excel.Application();
 			Excel.Workbook xlWb = ExcelApp2.Workbooks.Open(filename); //открываем Excel файл
@@ -50,6 +51,8 @@ namespace WebApp.Utils
 			}
 			index = FindMaxId();
 		}
+
+		public Product GetProductById(int id) => Constants.PRODUCT_LIST.Find(p => p.Id == id);
 
 		public void AddProduct(Product product)//параметр продукт
 		{
