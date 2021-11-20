@@ -173,7 +173,7 @@ textarea {
     float: left;
     width: 100%;
     text-align: end;
-    max-height: 32px;
+    padding: 0px 15px 0px 15px;
 }
 
 #tableFilter {
@@ -212,6 +212,9 @@ textarea {
 .table-fixed td, .table-fixed th {
     text-align: center;
     float: left !important;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
 }
 
 .table-fixed th {

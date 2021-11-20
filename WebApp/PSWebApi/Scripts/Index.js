@@ -94,27 +94,33 @@ function DeleteProduct(id) {
 }
 // вывод полученных данных на экран
 function WriteResponse(products, attr) {
-    var strResult = "<table id='tableFilter' class='table table-condensed table-fixed'><thead><tr><th class='col-lg-2'>ID</th><th class='col-lg-4'>Наименование</th><th class='col-lg-4'>Стоимость, руб.</th><th class='col-lg-2'>&nbsp;</th></tr></thead><tbody>";
+    var strResult = "<table id='tableFilter' class='table table-condensed table-fixed'><thead><tr><th class='col-xs-2' data-toggle='tooltip' data-placement='top' title='ID'>ID</th><th class='col-xs-4' data-toggle='tooltip' data-placement='top' title='Наименование'>Наименование</th><th class='col-xs-4' data-toggle='tooltip' data-placement='top' title='Стоимость, руб.'>Стоимость, руб.</th><th class='col-xs-2'>&nbsp;</th></tr></thead><tbody>";
     $.each(products, function (index, product) {
-        strResult += "<tr><td class='col-lg-2'>" + product.Id + "</td><td class='col-lg-4'> " + product.Name + "</td><td class='col-lg-4'>" + product.Price +
-            "</td><td class='col-lg-2'><a id='delItem' data-item='" + product.Id + "' onclick='DeleteItem(this);' class='bi bi-trash' >" + svgTrash + "</a></td></tr>";
+        strResult += "<tr><td class='col-xs-2' data-toggle='tooltip' data-placement='top' title='" + product.Id + "'>" + product.Id + "</td><td class='col-xs-4' data-toggle='tooltip' data-placement='top' title='" + product.Name + "'> " + product.Name + "</td><td class='col-xs-4' data-toggle='tooltip' data-placement='top' title='" + product.Price + "'>" + product.Price +
+            "</td><td class='col-xs-2'><a id='delItem' data-item='" + product.Id + "' onclick='DeleteItem(this);' class='bi bi-trash' >" + svgTrash + "</a></td></tr>";
     });
     strResult += "</tbody></table>";
 
     strResult += '<div class="table-footer-block">' +
-                    '<div class="row">' +
-                        '<div class="col-md-1" style="text-align: center;">' +
-                            '<button id="refreshFilterTable" class="btn btn-primary" style="padding: 1px 6px; margin-top: 2.5px;"><span class="glyphicon glyphicon-refresh"></span></button>' +
-                        '</div>' +
-                        '<div class="col-md-11">' +
-                            '<label class="table-footer-count">Кол-во строк: ' + products.length + '</label>' +
-                        '</div>' +
-                    '</div>'+
+                    '<div class="form-inline row">' +
+                        '<div class="row">' +
+                            '<div class="col-xs-1" style="text-align: center;">' +
+                                '<button id="refreshFilterTable" class="btn btn-primary" style="padding: 1px 6px; margin-top: 2.5px;"><span class="glyphicon glyphicon-refresh"></span></button>' +
+                            '</div>' +
+                            '<div class="col-xs-11">' +
+                                '<label class="table-footer-count">Кол-во строк: ' + products.length + '</label>' +
+                            '</div>' +
+                        '</div>'+
+                    '</div>' +
                 '</div>';
 
     $(attr).html(strResult);
 
     autoResizeTBody(document.getElementById('tableFilter').children[1]);
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
 
     $('#refreshFilterTable').click(function () {
         FilterProductStore($("#subString").val());
