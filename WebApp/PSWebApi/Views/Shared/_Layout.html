@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Продуктовый</title>
+    <script src="libs\jquery\jquery-3.3.1.min.js"></script>
+</head>
+<body>			
+	<div id="tableBlock"></div>
+	<div id="createBlock">
+		<p><b>Добавление продукта</b></p>
+		<table>
+			<tr><td><label>Название: </label></td><td><input type="text" id="addName" /></td></tr>
+			<tr><td><label>Цена: </label></td><td><input 
+														 id="addPrice"
+														 type="number" 
+														 min="1" step="1" 
+														 onfocus="this.previousValue = this.value" 
+														 onkeydown="this.previousValue = this.value" 
+														 oninput="validity.valid || (value = this.previousValue)"
+												    >
+				                         </td></tr>
+		</table>
+		<button id="addProduct">Сохранить</button>
+	</div>
+	<form method="get" enctype="text/plain">
+		<input type="text" id="subString" />
+		<button id="filterProduct">Поиск</button>
+	</form>
+	<div id="tableFilterBlock"></div>
+	<script src="Scripts\Index.js"></script>
+</body>
+</html>

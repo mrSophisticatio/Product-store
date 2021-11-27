@@ -17,7 +17,6 @@ namespace PSWebApi.Utils
 		public ProductStoreDBManager(string connectionStringName)
         {
             SqliteConnectionString = "Data Source=\"" + FileSystemManager.GetPathByConnectionStringName(connectionStringName) + "\";Mode=ReadWrite";
-            //SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
             dbConnection = new SqliteConnection(SqliteConnectionString);
 			dbConnection.Open();
 			Unit();
