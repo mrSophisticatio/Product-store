@@ -6,7 +6,7 @@
     </label>
     <div class="toggler__content-box">
         <div class="form-inline summary-block row">
-            <div class="col-md-8">
+            <div class="col-xs-8">
                 <div class="form-group widget">
                     <div class="row">
                         <label>Наименование</label>
@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-xs-4">
                 <div class="form-group widget">
                     <div class="row">
                         <label>Стоимость, руб.</label>
@@ -48,18 +48,25 @@
     </label>
     <div class="toggler__content-box">
         <div class="form-inline summary-block row">
-            <div class="form-group widget" style="margin-left: 15px;">
-                <div class="row">
-                    <label>Наименование</label>
-                </div>
-                <div class="row">
-                        <div class="input-group" style="width: 88%;">
-                            <input type="text" id="subString" class="" style="width: 100%;"/>
-                            <span id="clearFilterProduct" class="input-group-addon glyphicon clear-filter-cross">&times;</span>
-                        </div>
-                        <button id="filterProduct" class="btn btn-primary" style="margin-left: 30px; margin-top: -3px;">Найти</button>
+            <div class="col-md-11">
+                <div class="form-group widget">
+                    <div class="row">
+                        <label>Наименование</label>
+                    </div>
+                    <div class="input-group row">
+                        <input type="text" id="subString" class="" style="width: 100%;" />
+                        <span id="clearFilterProduct" class="input-group-addon glyphicon clear-filter-cross">&times;</span>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-1">
+                <div class="row">
+                    <label>&nbsp;</label>
+                </div>
+                <div class="row" style="text-align: center;">
+                    <button id="filterProduct" class="btn btn-primary" style="margin-top: -5px;">Найти</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
